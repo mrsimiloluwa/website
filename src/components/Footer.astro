@@ -1,0 +1,77 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t border-dark-subtle/80 bg-dark-base/40 text-text-secondary">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Col 1: Bio / Philosophy -->
+      <div class="md:col-span-2 space-y-3">
+        <div class="flex items-center space-x-2">
+          <div class="h-2 w-2 rounded-full bg-accent animate-pulse"></div>
+          <span class="text-sm font-semibold text-text-primary">Similoluwa Soremekun</span>
+        </div>
+        <p class="text-xs leading-relaxed text-text-muted max-w-md">
+          Data Analyst supporting financial and operational decision-making. Experienced in moving from complex business questions to reliable data models, Kimball marts, and high-impact analytics solutions.
+        </p>
+        <div class="pt-1 flex items-center gap-2 text-xs text-text-muted">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+          <span>Tallinn, Estonia • Open to impactful analytics & data engineering roles</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-text-primary mb-3">Navigation</h3>
+        <ul class="space-y-2 text-xs">
+          <li><a href="/" class="hover:text-text-primary transition-colors">Home</a></li>
+          <li><a href="/projects" class="hover:text-text-primary transition-colors">Projects</a></li>
+          <li><a href="/about" class="hover:text-text-primary transition-colors">About & Experience</a></li>
+          <li><a href="/contact" class="hover:text-text-primary transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Direct Contacts -->
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wider text-text-primary mb-3">Connect</h3>
+        <ul class="space-y-2 text-xs">
+          <li>
+            <a href="mailto:soremekuns@gmail.com" class="hover:text-accent transition-colors">
+              soremekuns@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/soremekuns" target="_blank" rel="noopener noreferrer" class="hover:text-text-primary transition-colors inline-flex items-center gap-1">
+              LinkedIn Profile
+              <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/mrsimiloluwa" target="_blank" rel="noopener noreferrer" class="hover:text-text-primary transition-colors inline-flex items-center gap-1">
+              GitHub (@mrsimiloluwa)
+              <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-8 pt-6 border-t border-dark-subtle/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-muted">
+      <div>
+        &copy; {currentYear} Similoluwa Soremekun. Built with Astro & Tailwind CSS.
+      </div>
+      <div class="flex items-center space-x-4">
+        <span>SQL • Snowflake • dbt</span>
+        <span>•</span>
+        <span>Python • Power BI</span>
+        <span>•</span>
+        <span>Tallinn, Estonia</span>
+      </div>
+    </div>
+  </div>
+</footer>

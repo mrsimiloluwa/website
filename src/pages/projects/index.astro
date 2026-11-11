@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+
+// Extract unique categories
+const categories = ['All', ...new Set(allProjects.map((p) => p.data.category))];
+---
+
+<BaseLayout
+  title="Projects — Similoluwa Soremekun"
+  description="Engineering case studies, dimensional Kimball data modeling, commercial banking reporting products, and governed AI platforms."
+>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <!-- Header -->
+    <header class="max-w-2xl mb-8">
+      <div class="inline-flex items-center text-xs font-mono font-medium text-accent uppercase tracking-wider mb-2">
+        Portfolio & Architecture Case Studies
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
+        Technical Projects & Systems
+      </h1>
+      <p class="mt-4 text-base leading-relaxed text-text-secondary">
+        A collection of production platforms, analytics engineering architectures, and quantitative models. Each project emphasizes clean dimensional modeling, financial integrity, and practical business impact.
+      </p>
+    </header>
+
+    <!-- Category Filter Tabs -->
+    <div class="mb-10 flex flex-wrap items-center gap-2 border-b border-dark-subtle/80 pb-4" id="category-filters">
+      {
+        categories.map((cat, idx) => (
+          <button
+            type="button"
+            data-category={cat}
+            class={`category-tab rounded-lg px-3.5 py-1.5 text-xs font-mono font-medium transition-all ${
+              idx === 0
+                ? 'bg-accent/15 text-accent border border-accent/40 shadow-sm'
+                : 'bg-dark-card text-text-secondary border border-dark-subtle hover:text-text-primary hover:border-dark-border'
+            }`}
+          >
+            {cat}
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Project Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+      {
+        sortedProjects.map((project) => (
+          <div class="project-item" data-category={project.data.category}>
+            <ProjectCard
+              title={project.data.title}
+              slug={project.slug}
+              description={project.data.shortDescription}
+              category={project.data.category}
+              tags={project.data.tags}
+              metrics={project.data.metrics.slice(0, 3)}
+              githubUrl={project.data.githubUrl}
+              liveUrl={project.data.liveUrl}
+              featured={project.data.featured}
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Empty State (hidden by default) -->
+    <div id="no-projects-message" class="hidden rounded-xl border border-dashed border-dark-subtle p-12 text-center text-text-muted mt-6">
+      <p class="text-sm">No projects match the selected category.</p>
+    </div>
+
+    <!-- Reusability Note for Future Projects -->
+    <div class="mt-16 rounded-xl border border-dark-subtle bg-dark-surface/40 p-6 text-xs text-text-muted flex items-start space-x-3">
+      <div class="mt-0.5 text-accent">
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div class="leading-relaxed">
+        <span class="text-text-secondary font-medium">Extensible Content Pipeline:</span> Adding a new project to this website is decoupled from page layout code. Simply add a Markdown or MDX file into <code class="font-mono text-[11px] text-accent-light bg-dark-base px-1.5 py-0.5 rounded border border-dark-subtle">src/content/projects/*.md</code> with metadata, key metrics, and architectural breakdown.
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('.category-tab');
+  const projectItems = document.querySelectorAll<HTMLElement>('.project-item');
+  const emptyState = document.getElementById('no-projects-message');
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const selectedCategory = button.getAttribute('data-category');
+
+      // Update button active states
+      filterButtons.forEach((btn) => {
+        btn.classList.remove('bg-accent/15', 'text-accent', 'border-accent/40', 'shadow-sm');
+        btn.classList.add('bg-dark-card', 'text-text-secondary', 'border-dark-subtle');
+      });
+
+      button.classList.remove('bg-dark-card', 'text-text-secondary', 'border-dark-subtle');
+      button.classList.add('bg-accent/15', 'text-accent', 'border-accent/40', 'shadow-sm');
+
+      // Filter project cards
+      let visibleCount = 0;
+      projectItems.forEach((item) => {
+        const itemCategory = item.getAttribute('data-category');
+        if (selectedCategory === 'All' || itemCategory === selectedCategory) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+        } else {
+          emptyState.classList.add('hidden');
+        }
+      }
+    });
+  });
+</script>

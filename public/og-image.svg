@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#080C14"/>
+  <circle cx="600" cy="0" r="500" fill="#3B82F6" fill-opacity="0.08"/>
+  <rect x="40" y="40" width="1120" height="550" rx="16" stroke="#1E293B" stroke-width="2" fill="#0D131F" fill-opacity="0.6"/>
+
+  <!-- Logo Badge -->
+  <rect x="90" y="90" width="64" height="64" rx="12" fill="#3B82F6" fill-opacity="0.1" stroke="#3B82F6" stroke-opacity="0.3"/>
+  <text x="122" y="132" fill="#60A5FA" font-family="monospace" font-size="28" font-weight="bold" text-anchor="middle">SS</text>
+
+  <!-- Name & Title -->
+  <text x="90" y="210" fill="#F8FAFC" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="700" letter-spacing="-0.02em">Similoluwa Soremekun</text>
+  <text x="90" y="260" fill="#60A5FA" font-family="monospace" font-size="24" font-weight="600">Data Analyst at Nordea • Quantitative Economics (MSc)</text>
+
+  <!-- Tagline -->
+  <text x="90" y="320" fill="#94A3B8" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400">
+    Financial Analytics • Kimball Dimensional Modeling • Snowflake • dbt • Governed AI Systems
+  </text>
+
+  <!-- Metric Badges -->
+  <g transform="translate(90, 390)">
+    <!-- Metric 1 -->
+    <rect x="0" y="0" width="240" height="110" rx="10" fill="#131C2D" stroke="#263449"/>
+    <text x="20" y="35" fill="#64748B" font-family="monospace" font-size="13" font-weight="600">COMMERCIAL IMPACT</text>
+    <text x="20" y="75" fill="#F8FAFC" font-family="monospace" font-size="28" font-weight="700">~20% Uplift</text>
+    <text x="20" y="95" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="12">Business-Banking Fee Product</text>
+
+    <!-- Metric 2 -->
+    <rect x="260" y="0" width="240" height="110" rx="10" fill="#131C2D" stroke="#263449"/>
+    <text x="280" y="35" fill="#64748B" font-family="monospace" font-size="13" font-weight="600">RECONCILED REVENUE</text>
+    <text x="280" y="75" fill="#60A5FA" font-family="monospace" font-size="28" font-weight="700">€408,602.64</text>
+    <text x="280" y="95" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="12">General Ledger Accounting Bridge</text>
+
+    <!-- Metric 3 -->
+    <rect x="520" y="0" width="240" height="110" rx="10" fill="#131C2D" stroke="#263449"/>
+    <text x="540" y="35" fill="#64748B" font-family="monospace" font-size="13" font-weight="600">DATA QUALITY</text>
+    <text x="540" y="75" fill="#10B981" font-family="monospace" font-size="28" font-weight="700">462 Tests</text>
+    <text x="540" y="95" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="12">100% Schema & Logic Pass</text>
+
+    <!-- Metric 4 -->
+    <rect x="780" y="0" width="240" height="110" rx="10" fill="#131C2D" stroke="#263449"/>
+    <text x="800" y="35" fill="#64748B" font-family="monospace" font-size="13" font-weight="600">LOCATION</text>
+    <text x="800" y="75" fill="#F8FAFC" font-family="monospace" font-size="24" font-weight="700">Tallinn, EE</text>
+    <text x="800" y="95" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="12">soremekuns@gmail.com</text>
+  </g>
+</svg>

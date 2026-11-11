@@ -1,0 +1,321 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import MetricCard from '@components/MetricCard.astro';
+import TechBadge from '@components/TechBadge.astro';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+const featuredProject = sortedProjects.find((p) => p.data.featured) || sortedProjects[0];
+const otherProjects = sortedProjects.filter((p) => p.slug !== featuredProject?.slug);
+
+const coreFocusAreas = [
+  {
+    title: 'Financial Analytics & Commercial Reporting',
+    description:
+      'Translating complex customer fee structures, arrears, and transactional variances into automated commercial reporting products that drive measurable business revenue.',
+    tags: ['Customer Analytics', 'Fee Modeling', 'Power BI', 'Commercial Banking'],
+  },
+  {
+    title: 'Analytics Engineering & Dimensional Modeling',
+    description:
+      'Designing Kimball star schemas, fact and dimension marts, and robust data transformations in Snowflake, PostgreSQL, and dbt Core with automated testing.',
+    tags: ['dbt Core', 'Snowflake', 'PostgreSQL 16', 'DuckDB', 'Kimball Marts'],
+  },
+  {
+    title: 'Governed AI Systems & AST Security',
+    description:
+      'Architecting controlled conversational AI pipelines using LangGraph state machines and SQLGlot AST parsing to enforce compile-time mathematical and SQL safety gates.',
+    tags: ['LangGraph', 'SQLGlot AST', 'Least-Privilege Roles', 'Semantic Catalogs'],
+  },
+  {
+    title: 'Data Pipelines & Workflow Automation',
+    description:
+      'Building reliable automated batch pipelines and process automations with Python, Apache Airflow, and Power Platform to eliminate manual operational overhead.',
+    tags: ['Python', 'Apache Airflow', 'Power Automate', 'ETL / ELT'],
+  },
+];
+---
+
+<BaseLayout
+  title="Similoluwa Soremekun — Data Analyst & Analytics Specialist"
+  description="Data Analyst at Nordea specializing in financial analytics, dimensional Kimball data modeling, Snowflake, dbt, and governed AI platforms."
+>
+  <!-- Hero Section -->
+  <section class="border-b border-dark-subtle/80 pt-16 pb-20 sm:pt-24 sm:pb-28">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-mono text-accent mb-6">
+          <span class="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></span>
+          <span>Data Analyst at Nordea • Quantitative Economics (MSc)</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-text-primary leading-[1.15]">
+          Similoluwa Soremekun
+        </h1>
+        <p class="mt-3 text-xl sm:text-2xl font-medium text-accent">
+          Bridging complex business questions with reliable data products.
+        </p>
+
+        <p class="mt-6 text-base sm:text-lg leading-relaxed text-text-secondary">
+          I support financial and operational decision-making by building reusable data models, Kimball marts, and automated reporting products. Experienced in turning exploratory fee analyses into live commercial products that grew team revenue by roughly 20% in business banking.
+        </p>
+
+        <!-- Primary Actions -->
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href="/projects"
+            class="inline-flex items-center justify-center rounded-lg border border-accent bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-accent-hover"
+          >
+            <span>Explore Technical Projects</span>
+            <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          <a
+            href="/about"
+            class="inline-flex items-center justify-center rounded-lg border border-dark-subtle bg-dark-card px-5 py-2.5 text-sm font-medium text-text-primary transition-all hover:border-dark-border hover:bg-dark-hover"
+          >
+            <span>Background & Experience</span>
+          </a>
+          <a
+            href="mailto:soremekuns@gmail.com"
+            class="inline-flex items-center justify-center rounded-lg border border-dark-subtle bg-dark-surface px-4 py-2.5 text-sm font-mono text-accent hover:border-accent transition-all"
+          >
+            soremekuns@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Spotlight Section -->
+  {featuredProject && (
+    <section class="border-b border-dark-subtle/80 py-16 sm:py-20 bg-dark-surface/40">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="text-xs font-mono font-semibold uppercase tracking-wider text-accent mb-1.5">
+              Featured Architecture Case Study
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+              {featuredProject.data.title}
+            </h2>
+          </div>
+          <a
+            href={`/projects/${featuredProject.slug}`}
+            class="inline-flex items-center text-xs font-medium text-accent hover:text-accent-light transition-colors group"
+          >
+            <span>Read Architecture Case Study</span>
+            <svg class="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Spotlight Card -->
+        <div class="rounded-2xl border border-dark-border bg-dark-card/90 p-6 sm:p-8 shadow-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-7 space-y-4">
+              <p class="text-base text-text-secondary leading-relaxed">
+                {featuredProject.data.shortDescription}
+              </p>
+
+              <!-- Accounting Bridge Banner -->
+              <div class="rounded-lg border border-dark-subtle bg-dark-surface/90 p-4 font-mono text-xs text-text-secondary">
+                <div class="text-[10px] uppercase text-text-muted font-semibold tracking-wider mb-1.5">
+                  Reconciled Revenue Accounting Bridge
+                </div>
+                <div class="flex flex-wrap items-center gap-2 text-text-primary">
+                  <span>Gross: €467.4k</span>
+                  <span class="text-text-muted">−</span>
+                  <span>Waivers: €8.1k</span>
+                  <span class="text-text-muted">−</span>
+                  <span>Arrears: €29.3k</span>
+                  <span class="text-text-muted">−</span>
+                  <span>Pass-Through: €21.5k</span>
+                  <span class="text-accent font-semibold">= Net Rev: €408,602.64</span>
+                </div>
+              </div>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-1.5 pt-2">
+                {featuredProject.data.tags.map((tag) => (
+                  <TechBadge name={tag} />
+                ))}
+              </div>
+
+              <!-- Actions -->
+              <div class="pt-4 flex flex-wrap items-center gap-3 text-xs">
+                {featuredProject.data.liveUrl && (
+                  <a
+                    href={featuredProject.data.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-accent bg-accent/20 px-3.5 py-2 font-medium text-accent-light hover:bg-accent hover:text-white transition-all"
+                  >
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    <span>Launch Live Streamlit App</span>
+                  </a>
+                )}
+                {featuredProject.data.githubUrl && (
+                  <a
+                    href={featuredProject.data.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-dark-subtle bg-dark-surface px-3.5 py-2 font-medium text-text-secondary hover:text-text-primary hover:border-dark-border transition-all"
+                  >
+                    <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                    <span>Inspect GitHub Source</span>
+                  </a>
+                )}
+                <a
+                  href={`/projects/${featuredProject.slug}`}
+                  class="inline-flex items-center gap-1 text-accent hover:text-accent-light font-medium ml-auto"
+                >
+                  <span>Case Study Details →</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Metrics Column -->
+            <div class="lg:col-span-5 grid grid-cols-2 gap-3">
+              {featuredProject.data.metrics.map((m, idx) => (
+                <MetricCard
+                  label={m.label}
+                  value={m.value}
+                  detail={m.detail}
+                  highlight={idx === 0}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Project Collection Grid (Multiple Projects Showcase) -->
+  {otherProjects.length > 0 && (
+    <section class="border-b border-dark-subtle/80 py-16 sm:py-20">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between mb-8">
+          <div>
+            <div class="text-xs font-mono font-semibold uppercase tracking-wider text-accent mb-1.5">
+              Portfolio Catalog
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+              More Projects & Case Studies
+            </h2>
+          </div>
+          <a
+            href="/projects"
+            class="text-xs font-medium text-accent hover:text-accent-light transition-colors"
+          >
+            View All ({sortedProjects.length}) →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {otherProjects.map((p) => (
+            <ProjectCard
+              title={p.data.title}
+              slug={p.slug}
+              description={p.data.shortDescription}
+              category={p.data.category}
+              tags={p.data.tags}
+              metrics={p.data.metrics.slice(0, 3)}
+              githubUrl={p.data.githubUrl}
+              liveUrl={p.data.liveUrl}
+              featured={p.data.featured}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Focus Areas & Technical Pillars -->
+  <section class="border-b border-dark-subtle/80 py-16 sm:py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mb-12">
+        <div class="text-xs font-mono font-semibold uppercase tracking-wider text-accent mb-1.5">
+          Core Domains
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+          Technical specialization & engineering pillars
+        </h2>
+        <p class="mt-3 text-sm text-text-secondary leading-relaxed">
+          How I approach software architecture, analytics engineering, and governed artificial intelligence for mission-critical enterprise domains.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {coreFocusAreas.map((area) => (
+          <div class="rounded-xl border border-dark-subtle bg-dark-card/60 p-6 hover:border-dark-border transition-colors">
+            <h3 class="text-base font-semibold text-text-primary mb-2">
+              {area.title}
+            </h3>
+            <p class="text-sm leading-relaxed text-text-secondary mb-4">
+              {area.description}
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              {area.tags.map((t) => (
+                <TechBadge name={t} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Connect / Explore Section -->
+  <section class="py-16 sm:py-20 bg-dark-base">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-2xl border border-dark-subtle bg-dark-surface/80 p-8 sm:p-12 text-center max-w-3xl mx-auto">
+        <div class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-accent/40 bg-accent/10 text-accent mb-4">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary">
+          Interested in discussing data analytics or financial platforms?
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-text-secondary max-w-lg mx-auto">
+          Based in Tallinn, Estonia. Feel free to connect directly via email or LinkedIn.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="mailto:soremekuns@gmail.com"
+            class="rounded-lg border border-accent bg-accent px-5 py-2 text-xs font-semibold text-white hover:bg-accent-hover transition-colors"
+          >
+            soremekuns@gmail.com
+          </a>
+          <a
+            href="https://www.linkedin.com/in/soremekuns"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg border border-dark-subtle bg-dark-card px-5 py-2 text-xs font-semibold text-text-secondary hover:text-text-primary hover:border-dark-border transition-colors"
+          >
+            LinkedIn Profile
+          </a>
+          <a
+            href="https://github.com/mrsimiloluwa"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-lg border border-dark-subtle bg-dark-card px-5 py-2 text-xs font-semibold text-text-secondary hover:text-text-primary hover:border-dark-border transition-colors"
+          >
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

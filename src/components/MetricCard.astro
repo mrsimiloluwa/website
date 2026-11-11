@@ -1,0 +1,25 @@
+---
+interface Props {
+  label: string;
+  value: string;
+  detail?: string;
+  highlight?: boolean;
+}
+
+const { label, value, detail, highlight = false } = Astro.props;
+---
+
+<div
+  class={`relative overflow-hidden rounded-lg border p-4 transition-all duration-200 ${
+    highlight
+      ? 'border-accent/40 bg-dark-card/90 shadow-sm'
+      : 'border-dark-subtle bg-dark-card/60 hover:border-dark-border'
+  }`}
+>
+  <div class="text-[11px] font-medium uppercase tracking-wider text-text-muted mb-1">{label}</div>
+  <div class="text-xl sm:text-2xl font-semibold tracking-tight text-text-primary font-mono">{value}</div>
+  {detail && <div class="mt-1 text-xs text-text-secondary">{detail}</div>}
+  {highlight && (
+    <div class="absolute top-0 right-0 h-1 w-12 bg-accent rounded-bl-sm" />
+  )}
+</div>

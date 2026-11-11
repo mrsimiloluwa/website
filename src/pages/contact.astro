@@ -1,0 +1,97 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const contacts = [
+  {
+    label: 'Email',
+    value: 'soremekuns@gmail.com',
+    href: 'mailto:soremekuns@gmail.com',
+    description: 'Direct email for career opportunities, technical discussions, or consulting inquiries.',
+    primary: true,
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/soremekuns',
+    href: 'https://www.linkedin.com/in/soremekuns',
+    description: 'Connect professionally, view recommendations, and follow industry updates.',
+    primary: false,
+  },
+  {
+    label: 'GitHub',
+    value: 'github.com/mrsimiloluwa',
+    href: 'https://github.com/mrsimiloluwa',
+    description: 'Inspect open-source repositories, dbt models, and analytical code.',
+    primary: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Contact — Similoluwa Soremekun"
+  description="Get in touch with Similoluwa Soremekun, Data Analyst & Analytics Specialist based in Tallinn, Estonia."
+>
+  <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <!-- Header -->
+    <header class="border-b border-dark-subtle pb-8 mb-10">
+      <div class="inline-flex items-center text-xs font-mono font-medium text-accent uppercase tracking-wider mb-2">
+        Direct Contact
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
+        Let's Connect
+      </h1>
+      <p class="mt-4 text-base leading-relaxed text-text-secondary">
+        I am currently based in <strong class="text-text-primary font-medium">Tallinn, Estonia</strong>. Whether you want to discuss full-time roles, data analytics architecture, banking reporting systems, or have questions about my projects, feel free to reach out directly.
+      </p>
+    </header>
+
+    <!-- Channels List -->
+    <div class="space-y-4">
+      {
+        contacts.map((c) => (
+          <a
+            href={c.href}
+            target={c.href.startsWith('mailto') ? undefined : '_blank'}
+            rel={c.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+            class="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-dark-subtle bg-dark-card/70 p-6 transition-all hover:border-accent/40 hover:bg-dark-hover"
+          >
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-mono uppercase text-accent font-semibold">{c.label}</span>
+                {c.primary && (
+                  <span class="rounded bg-accent/10 px-1.5 py-0.2 text-[10px] font-mono text-accent">
+                    Preferred
+                  </span>
+                )}
+              </div>
+              <div class="text-base font-semibold text-text-primary group-hover:text-accent-light transition-colors font-mono">
+                {c.value}
+              </div>
+              <p class="mt-1 text-xs text-text-muted leading-relaxed">
+                {c.description}
+              </p>
+            </div>
+            <div class="self-start sm:self-center">
+              <span class="inline-flex items-center gap-1.5 rounded-lg border border-dark-subtle bg-dark-surface px-3 py-1.5 text-xs font-medium text-text-secondary group-hover:border-accent/50 group-hover:text-accent-light transition-all">
+                <span>Connect</span>
+                <svg class="h-3 w-3 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Location & Availability Badge -->
+    <div class="mt-10 rounded-xl border border-dark-subtle bg-dark-surface/40 p-5 flex items-center justify-between text-xs text-text-muted">
+      <div class="flex items-center gap-2.5">
+        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+        <span>Location: <strong class="text-text-primary font-medium">Tallinn, Estonia</strong> (UTC+2)</span>
+      </div>
+      <div>
+        <span>Open to conversations</span>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

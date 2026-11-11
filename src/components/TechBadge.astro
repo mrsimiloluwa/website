@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+  category?: 'primary' | 'data' | 'ai' | 'cloud' | 'neutral';
+}
+
+const { name, category = 'neutral' } = Astro.props;
+
+const colorClasses = {
+  primary: 'border-accent/30 bg-accent/10 text-accent-light',
+  data: 'border-amber-500/30 bg-amber-500/10 text-amber-300',
+  ai: 'border-purple-500/30 bg-purple-500/10 text-purple-300',
+  cloud: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300',
+  neutral: 'border-dark-subtle bg-dark-surface text-text-secondary',
+};
+---
+
+<span
+  class={`inline-flex items-center rounded border px-2 py-0.5 text-[11px] font-mono font-medium tracking-tight transition-colors ${
+    colorClasses[category] || colorClasses.neutral
+  }`}
+>
+  {name}
+</span>

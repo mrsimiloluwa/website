@@ -1,0 +1,172 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import TechBadge from '@components/TechBadge.astro';
+
+const coreToolkit = [
+  {
+    category: 'Analytics & BI',
+    items: ['SQL', 'Python', 'Power BI', 'DAX', 'Excel'],
+  },
+  {
+    category: 'Analytics Engineering',
+    items: [
+      'dbt',
+      'Snowflake',
+      'PostgreSQL',
+      'DuckDB',
+      'Dimensional Modelling',
+      'Data Quality & Testing',
+    ],
+  },
+  {
+    category: 'Data Engineering',
+    items: [
+      'Apache Airflow',
+      'Docker',
+      'Git',
+      'GitHub Actions',
+      'REST APIs',
+      'CI/CD',
+    ],
+  },
+  {
+    category: 'Application Development',
+    items: ['FastAPI', 'Streamlit', 'TypeScript', 'Astro'],
+  },
+];
+
+const aiExpansion = [
+  'LLM-ready data modelling',
+  'Business context & semantic layers',
+  'Governed AI analytics',
+  'LangGraph',
+  'SQLGlot',
+  'LLM integration',
+];
+---
+
+<BaseLayout
+  title="About — Similoluwa Soremekun"
+  description="Data analyst and analytics engineer working across SQL, Python, Power BI, data modelling, pipelines, and governed AI analytics."
+>
+  <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <!-- Header -->
+    <header class="border-b border-dark-subtle pb-8 mb-10">
+      <div class="inline-flex items-center text-xs font-mono font-medium text-accent uppercase tracking-wider mb-2">
+        About Me
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
+        Similoluwa Soremekun
+      </h1>
+      <p class="mt-2 text-sm font-mono text-accent">
+        Data Analyst & Analytics Engineer • Tallinn, Estonia
+      </p>
+    </header>
+
+    <!-- Narrative Intro -->
+    <section class="space-y-5 text-base sm:text-lg leading-relaxed text-text-secondary border-b border-dark-subtle pb-10 mb-12">
+      <p class="text-text-primary font-medium">
+        I'm a data analyst and analytics engineer. Most of my work revolves around SQL, Python, Power BI, data modelling and building data pipelines.
+      </p>
+      <p>
+        I enjoy figuring out how things fit together, from the raw data all the way to the dashboards and reports people use. Lately, I've also been getting into AI and how to prepare the data and models behind the scenes so LLMs can actually make sense of business information.
+      </p>
+      <p>
+        I like solving problems, learning new things and occasionally spending far too long trying to make something work exactly the way I want it to.
+      </p>
+
+      <div class="pt-3 flex items-center gap-3 text-xs font-mono text-text-muted">
+        <span>Detailed work history & recommendations:</span>
+        <a
+          href="https://www.linkedin.com/in/soremekuns"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-accent hover:text-accent-light underline underline-offset-4"
+        >
+          <span>View on LinkedIn</span>
+          <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Core Toolkit -->
+    <section class="mb-14">
+      <div class="mb-6">
+        <div class="text-[11px] font-mono uppercase tracking-wider text-accent font-semibold">
+          Tools and technologies you already work with
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary mt-1">
+          Core toolkit
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {
+          coreToolkit.map((block) => (
+            <div class="rounded-xl border border-dark-subtle bg-dark-card/60 p-5 hover:border-dark-border transition-colors">
+              <h3 class="text-xs font-mono uppercase tracking-wider text-text-primary font-semibold mb-3">
+                {block.category}
+              </h3>
+              <div class="flex flex-wrap gap-1.5">
+                {block.items.map((item) => (
+                  <TechBadge name={item} />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- AI & LLM-focused development -->
+    <section class="mb-14">
+      <div class="mb-6">
+        <div class="text-[11px] font-mono uppercase tracking-wider text-purple-400 font-semibold">
+          Current area of expansion
+        </div>
+        <h2 class="text-2xl font-bold tracking-tight text-text-primary mt-1">
+          AI & LLM-focused development
+        </h2>
+      </div>
+
+      <div class="rounded-xl border border-purple-500/20 bg-purple-500/5 p-6">
+        <p class="text-xs text-text-muted mb-4 font-mono">
+          Focusing on the architectural discipline required to make business data understandable, queryable, and auditable for Large Language Models.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          {aiExpansion.map((item) => (
+            <span class="inline-flex items-center rounded border border-purple-500/30 bg-purple-500/10 px-2.5 py-1 text-xs font-mono font-medium text-purple-300">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <div class="pt-8 border-t border-dark-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <h3 class="text-sm font-semibold text-text-primary">Want to discuss data modelling or analytics projects?</h3>
+        <p class="text-xs text-text-muted mt-0.5">Feel free to connect directly via email or LinkedIn.</p>
+      </div>
+      <div class="flex items-center space-x-3">
+        <a
+          href="mailto:soremekuns@gmail.com"
+          class="rounded-lg border border-accent bg-accent/20 px-4 py-2 text-xs font-semibold text-accent-light hover:bg-accent hover:text-white transition-all"
+        >
+          Email Me
+        </a>
+        <a
+          href="https://www.linkedin.com/in/soremekuns"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-lg border border-dark-subtle bg-dark-card px-4 py-2 text-xs font-semibold text-text-secondary hover:text-text-primary transition-all"
+        >
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
